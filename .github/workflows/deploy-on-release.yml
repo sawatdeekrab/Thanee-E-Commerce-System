@@ -8,11 +8,13 @@ on:
 
 permissions:
   contents: read
+  deployments: write
   pages: write
   id-token: write
 
 jobs:
   build:
+    if: ${{ github.event.release.target_commitish == 'Production'}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -39,7 +41,7 @@ jobs:
         # --base-href=/Thanee-E-Commerce-System/ is CRUCIAL for GitHub Pages deployments
         # as it tells Angular where to find its assets relative to the root URL.
         # This matches your repository name: 'Thanee-E-Commerce-System'.
-        run: npm run build --configuration=production --base-href=/Thanee-E-Commerce-System/
+        run: npm run build --configuration=production
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
