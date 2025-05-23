@@ -72,7 +72,7 @@ jobs:
         uses: chrnorm/deployment-action@v2
         with:
           token: ${{ github.token }}
-          environment: production
+          environment: Production
           description: "Deploy Pages for release ${{ github.ref_name }}"
 
       - name: Mark deployment success
@@ -81,7 +81,7 @@ jobs:
         with:
           token: ${{ github.token }}
           deployment-id: ${{ steps.create_deploy.outputs.deployment_id }}
-          environment: production
+          environment: Production
           state: success
 
       - name: Mark deployment failure
@@ -90,5 +90,5 @@ jobs:
         with:
           token: ${{ github.token }}
           deployment-id: ${{ steps.create_deploy.outputs.deployment_id }}
-          environment: production
+          environment: Production
           state: failure
