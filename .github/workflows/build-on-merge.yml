@@ -1,0 +1,48 @@
+name: Test and build on PR
+
+on:
+  pull_request:
+    branches:
+      - main
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Step 1: Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js environment
+      # We recommend using a specific Node.js version that matches your project's requirements.
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22' # Specify the Node.js version (e.g., '16', '18', '20')
+
+      # Step 3: Cache Node.js modules to speed up subsequent runs
+      # This step checks if 'node_modules' exists in the cache based on the package-lock.json hash.
+      # If found, it restores them; otherwise, it saves them after installation.
+      - name: Cache Node.js modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm # Path to cache (npm cache directory)
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }} # Cache key based on OS and package-lock.json
+          restore-keys: |
+            ${{ runner.os }}-node- # Fallback key if exact match not found
+
+      # Step 4: Install project dependencies
+      # 'npm ci' is preferred over 'npm install' in CI environments as it ensures a clean install
+      # based on package-lock.json, leading to more consistent builds.
+      - name: Install dependencies
+        run: npm ci
