@@ -5,6 +5,9 @@ on:
     type: [created]
   # Allows you to run this workflow manually from the Actions tab in your repository.
   workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }} # Or a fixed string like 'deploy-pages'
+  cancel-in-progress: true # Optional: cancels any currently running workflow in this group
 
 permissions:
   contents: read
