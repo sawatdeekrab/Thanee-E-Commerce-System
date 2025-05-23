@@ -50,7 +50,7 @@ jobs:
         # like 'dist/than-e-commerce-system' (lowercase, hyphenated from your project name).
         # Please verify the exact folder name under your 'dist' directory after a local build.
         with:
-          path: ./dist/than-e-commerce-system # <--- VERIFY THIS PATH!
+          path: ./dist/thanee-e-com-sys # <--- VERIFY THIS PATH!
 
   deploy:
     environment:
