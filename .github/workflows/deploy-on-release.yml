@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   build:
-    if: ${{ github.event.release.target_commitish == 'Production'}}
+    # if: ${{ github.event.release.target_commitish == 'Production'}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
