@@ -37,7 +37,7 @@ jobs:
         # --base-href=/Thanee-E-Commerce-System/ is CRUCIAL for GitHub Pages deployments
         # as it tells Angular where to find its assets relative to the root URL.
         # This matches your repository name: 'Thanee-E-Commerce-System'.
-        run: npm run build --configuration=production --base-href=/${{ github.event.repository.name }}/ --output-path=dist/browser
+        run: npm run build --configuration=production --base-href=/${{ github.event.repository.name }}/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -50,7 +50,7 @@ jobs:
         # like 'dist/than-e-commerce-system' (lowercase, hyphenated from your project name).
         # Please verify the exact folder name under your 'dist' directory after a local build.
         with:
-          path: ./dist/browser # <--- VERIFY THIS PATH!
+          path: ./dist/thanee-e-com-sys # <--- VERIFY THIS PATH!
 
   deploy:
     runs-on: ubuntu-latest
