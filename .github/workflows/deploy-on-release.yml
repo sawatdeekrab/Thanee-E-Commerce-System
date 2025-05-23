@@ -1,6 +1,8 @@
 name: Deploy Angular App to GitHub Pages
 
 on:
+  release:
+    type: [created]
   # Allows you to run this workflow manually from the Actions tab in your repository.
   workflow_dispatch:
 
@@ -37,7 +39,7 @@ jobs:
         # --base-href=/Thanee-E-Commerce-System/ is CRUCIAL for GitHub Pages deployments
         # as it tells Angular where to find its assets relative to the root URL.
         # This matches your repository name: 'Thanee-E-Commerce-System'.
-        run: npm run build --configuration=production --base-href=/${{ github.event.repository.name }}/
+        run: npm run build --configuration=production --base-href=/Thanee-E-Commerce-System/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
